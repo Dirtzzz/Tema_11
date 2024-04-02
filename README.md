@@ -48,4 +48,4 @@ print(*[i for i in fibonacci(200)])
 ### Результат:
 ![Меню](https://github.com/Dirtzzz/Tema_11/blob/main/11.2.png)
 файлик:
-![Меню](https://github.com/Dirtzzz/Tema_11/blob/main/fib.txt)
+(https://github.com/Dirtzzz/Tema_11/blob/main/fib.txt)
