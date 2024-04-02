@@ -14,50 +14,38 @@
 ### Вас никак не могут оставить числа Фибоначчи, очень уж они вас заинтересовали. Изучив новые возможности Python вы решили реализовать программу, которая считает числа Фибоначчи при помощи итераторов. Расчет начинается с чисел 1 и 1. Создайте функцию fib(n), генерирующую n чисел Фибоначчи с минимальными затратами ресурсов. Для реализации этой функции потребуется обратиться к инструкции yield (Она не сохраняет в оперативной памяти огромную последовательность, а дает возможность “доставать” промежуточные результаты по одному). Результатом решения задачи будет листинг кода и вывод в консоль с числом Фибоначчи от 200.
 
 ```python
-import time
+def fibonacci(n):
+    a, b = 1, 1
+    count = 0
+    while count < n:
+        yield a
+        a, b = b, a + b
+        count += 1
 
-def timer_decorator(func):
-    def wrapper(*args, **kwargs):
-        start_time = time.time()
-        result = func(*args, **kwargs)
-        end_time = time.time()
-        print(f'\nВремя выполнения программы {end_time - start_time} ')
-        return result
-
-    return wrapper
-
-@timer_decorator
-def fibonacci():
-    fib1 = fib2 = 1
-    for i in range(2, 400):
-        fib1, fib2 = fib2, fib1 + fib2
-        print(fib2, end=' ')
-
-if __name__ == '__main__':
-    fibonacci()
+for num in fibonacci(400):
+    print(num)
 ```
 ### Результат:
-![Меню](https://github.com/Dirtzzz/Tema_10/blob/main/10.1.png)
+![Меню](https://github.com/Dirtzzz/Tema_11/blob/main/11.1.png)
 
 ## Самостоятельная работа №2
 ### К коду предыдущей задачи добавьте запоминание каждого числа Фибоначчи в файл “fib.txt”, при этом каждое число должно находиться на отдельной строчке. Результатом выполнения задачи будет листинг кода и скриншот получившегося файла
 
 ```python
-def read_file(filename):
-    try:
-        file = open(filename, 'r', encoding='utf-8-sig')
-        content = file.read()
-        if not content:
-            raise Exception(f"{filename} пустой")
-        print(content)
-    except Exception as e:
-        print(str(e))
+def fibonacci(m):
+    a, b = 1, 1
+    count = 0
+    with open('fib.txt', 'w') as txt:
+        while count < m:
+            yield a
+            a, b = b, a + b
+            txt.write(str(a) + '\n')
+            count += 1
 
-
-if __name__ == '__main__':
-    read_file('pustoi.txt')
-    read_file('ne_pustoi.txt')
+print(*[i for i in fibonacci(200)])
 ```
 
 ### Результат:
-![Меню](https://github.com/Dirtzzz/Tema_10/blob/main/10.2.png)
+![Меню](https://github.com/Dirtzzz/Tema_11/blob/main/11.2.png)
+файлик:
+![Меню](https://github.com/Dirtzzz/Tema_11/blob/main/fib.txt)
